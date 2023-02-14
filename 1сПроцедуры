@@ -1,6 +1,23 @@
-
 Процедура КнопкаВыполнитьНажатие(Кнопка)
-	twoArraySort();
+	findMinAndMax();
+КонецПроцедуры
+
+Процедура lab1()
+	txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada aliquam odio, id dapibus odio efficitur sit amet. Integer pretium ligula ultrices finibus pharetra. Mauris semper eleifend nisi. Donec viverra lacus semper aliquam pellentesque. Donec malesuada mi eu neque scelerisque elementum. Etiam at vulputate magna, condimentum luctus turpis. Class aptent.";
+	
+	txt_array = СтрРазделить(txt, " .,!?");
+	result = txt_array[0];
+	Для Каждого word Из txt_array Цикл
+		Если СтрДлина(word) > СтрДлина(result) и СтрДлина(word) <> 0 Тогда 
+			result = word;
+		КонецЕсли;
+	КонецЦикла;
+		
+	Для Каждого word Из txt_array Цикл
+		Если СтрДлина(word) = СтрДлина(result) Тогда
+			Сообщить(word);
+		КонецЕсли;
+	КонецЦикла;
 КонецПроцедуры
 
 Процедура findMinAndMax()
@@ -31,26 +48,7 @@
 	Сообщить("Максимальный элемент: " + Строка(max));
 КонецПроцедуры
 
-Процедура lab1()
-	txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada aliquam odio, id dapibus odio efficitur sit amet. Integer pretium ligula ultrices finibus pharetra. Mauris semper eleifend nisi. Donec viverra lacus semper aliquam pellentesque. Donec malesuada mi eu neque scelerisque elementum. Etiam at vulputate magna, condimentum luctus turpis. Class aptent.";
-	
-	txt_array = СтрРазделить(txt, " .,!?");
-	result = txt_array[0];
-	Для Каждого word Из txt_array Цикл
-		Если СтрДлина(word) > СтрДлина(result) и СтрДлина(word) <> 0 Тогда 
-			result = word;
-		КонецЕсли;
-	КонецЦикла;
-		
-	Для Каждого word Из txt_array Цикл
-		Если СтрДлина(word) = СтрДлина(result) Тогда
-			Сообщить(word);
-		КонецЕсли;
-	КонецЦикла;
-КонецПроцедуры
-
 Процедура twoArraySort()
-
 	m = 4;
 	n = 4;
 	ГСЧ = Новый ГенераторСлучайныхЧисел(0);
@@ -68,12 +66,33 @@
 			numbers.Вставить(array[i][j]);			
 		КонецЦикла;        
 		
-		Для Каждого number Из Numbers Цикл
+		Для Каждого number Из numbers Цикл
 			Сообщить(number);
 		КонецЦикла;
 		
 		words = СтрСоединить(numbers, ",");
 		Сообщить(words);
 	КонецЦикла;
-	
 КонецПроцедуры;
+
+Функция findMaxNumber(a, b, c)
+	Возврат Макс(Макс(a, b), c)	
+КонецФункции
+
+Функция powNumber(number, pow)
+	Возврат Pow(number, pow)
+КонецФункции
+
+Функция changeNumber(number)
+	binaryCode = "";
+	
+	Если number = 0 Тогда
+		Возврат binaryCode
+		
+	binaryCode = "" + number % 2 + binaryCode;
+	number = Цел(number / 2);
+	changeNumber(number);
+	
+	Сообщить(binaryCode);
+	
+КонецФункции
