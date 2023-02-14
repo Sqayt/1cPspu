@@ -1,1 +1,79 @@
 
+Процедура КнопкаВыполнитьНажатие(Кнопка)
+	twoArraySort();
+КонецПроцедуры
+
+Процедура findMinAndMax()
+	array = Новый Массив(10);               
+	Для i = 0 По array.Количество() - 1 Цикл 
+		word = i;
+		Если ВвестиСтроку(word, "Введите значение", 100, Истина) Тогда
+			array[i] = word;
+		КонецЕсли;
+	КонецЦикла;     
+	
+	// Input keyboard
+	
+	min = array[0];
+	max = array[0];
+		
+	Для i = 0 По array.Количество() - 1 Цикл
+		Если min > array[i] Тогда
+			min = array[i];
+		КонецЕсли;
+		
+		Если max < array[i] Тогда
+			max = array[i];
+		КонецЕсли;
+	КонецЦикла;	  
+	
+	Сообщить("Минимальный элемент: " + Строка(min));
+	Сообщить("Максимальный элемент: " + Строка(max));
+КонецПроцедуры
+
+Процедура lab1()
+	txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada aliquam odio, id dapibus odio efficitur sit amet. Integer pretium ligula ultrices finibus pharetra. Mauris semper eleifend nisi. Donec viverra lacus semper aliquam pellentesque. Donec malesuada mi eu neque scelerisque elementum. Etiam at vulputate magna, condimentum luctus turpis. Class aptent.";
+	
+	txt_array = СтрРазделить(txt, " .,!?");
+	result = txt_array[0];
+	Для Каждого word Из txt_array Цикл
+		Если СтрДлина(word) > СтрДлина(result) и СтрДлина(word) <> 0 Тогда 
+			result = word;
+		КонецЕсли;
+	КонецЦикла;
+		
+	Для Каждого word Из txt_array Цикл
+		Если СтрДлина(word) = СтрДлина(result) Тогда
+			Сообщить(word);
+		КонецЕсли;
+	КонецЦикла;
+КонецПроцедуры
+
+Процедура twoArraySort()
+
+	m = 4;
+	n = 4;
+	ГСЧ = Новый ГенераторСлучайныхЧисел(0);
+	
+	array = Новый Массив(m, n);
+	Для i = 0 По array.Количество() - 1 Цикл
+		Для j = 0 По array[i].Количество() - 1 Цикл
+			array[i][j] = ГСЧ.СлучайноеЧисло(0, 100);
+		КонецЦикла;
+	КонецЦикла;
+	
+	Для i = 0 По array.Количество() - 1 Цикл
+		numbers = Новый Массив;
+		Для j = 0 По array[i].Количество() - 1 Цикл 
+			numbers.Вставить(array[i][j]);			
+		КонецЦикла;        
+		
+		Для Каждого number Из Numbers Цикл
+			Сообщить(number);
+		КонецЦикла;
+		
+		words = СтрСоединить(numbers, ",");
+		Сообщить(words);
+	КонецЦикла;
+	
+КонецПроцедуры;
