@@ -1,0 +1,76 @@
+package ru.ivanovds.SpringStudy.module3;
+
+import java.util.stream.Stream;
+
+public class MainApp {
+
+    public static void main(String[] args) {
+        String[] msg = {"Hello", "world", "It", "is", "text", "generated", "by", "IvanovDS"};
+//        List<String> msgList = Arrays.stream(msg)
+//                .map(String::toLowerCase)
+//                .sorted().collect(Collectors.toList());
+//
+        sortArray(msg, msg.length);
+        Stream.of(msg).forEach(x -> System.out.print(x + " "));
+    }
+
+    public static void sortArray(String[] array, int size) {
+        if (array == null) {
+            return;
+        }
+
+        if (array.length < 2) {
+            return;
+        }
+
+        int middleSize = array.length / 2;
+        String[] leftArray = new String[middleSize];
+        String[] rightArray = new String[size - middleSize];
+
+        for (int i = 0; i < middleSize; i++) {
+            leftArray[i] = array[i];
+        }
+
+        for (int i = middleSize; i < size; i++) {
+            rightArray[i - middleSize] = array[i];
+        }
+
+        sortArray(leftArray, middleSize);
+        sortArray(rightArray, size - middleSize);
+        merge(array, leftArray, rightArray, middleSize, size - middleSize);
+    }
+
+    public static void merge(String[] array, String[] leftArray, String[] rightArray, int left, int right) {
+        int i = 0, j = 0, z = 0;
+
+        while (i < left && j < right) {
+            if (isCheck(leftArray[i], rightArray[i], 0)) {
+                array[z++] = leftArray[i++];
+            } else {
+                array[z++] = rightArray[j++];
+            }
+        }
+        while (i < left) {
+            array[z++] = leftArray[i++];
+        }
+        while (j < right) {
+            array[z++] = rightArray[j++];
+        }
+    }
+
+    public static boolean isCheck(String a, String b, int index) {
+        if (a == null && b == null) {
+            return false;
+        }
+
+        if (Character.toLowerCase(a.charAt(index)) < Character.toLowerCase(b.charAt(index))) {
+            return true;
+        } else if (Character.toLowerCase(a.charAt(index)) > Character.toLowerCase(b.charAt(index))) {
+            return false;
+        } else {
+            isCheck(a, b, ++index);
+        }
+
+        return false;
+    }
+}
